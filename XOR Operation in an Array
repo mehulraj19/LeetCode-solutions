@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int xorOperation(int n, int start) {
+        int ar[n];
+        for(int i=0; i<n; i++) {
+            ar[i] = start + 2*i;
+        }
+        int m=ar[0];
+        for(int i=1; i<n; i++) {
+            m = m ^ ar[i];
+        }
+        return m;
+    }
+};
