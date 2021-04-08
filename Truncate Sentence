@@ -1,0 +1,17 @@
+import java.util.*;
+class Solution {
+    public String truncateSentence(String s, int k) {
+        
+        StringTokenizer st = new StringTokenizer(s, " ");
+        String s1="";
+        
+        while(st.hasMoreTokens() && k>0) {
+            s1 += st.nextToken();
+            if(k!=1){
+                s1 += " ";
+            }
+            k--;
+        }
+        return s1;
+    }
+}
