@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string generateTheString(int n) {
+     
+        int m = 97;
+        string k="";
+        if(n%2==0) {
+            while(n!=1){
+                k += char(m);
+                n--;
+            }
+            m++;
+            k += char(m);
+        }else{
+            while(n>0){
+                k += char(m);
+                n--;
+            }
+        }
+        return k;
+    }
+};
