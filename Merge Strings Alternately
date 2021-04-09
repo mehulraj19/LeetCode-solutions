@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+     
+        string word3 = "";
+        int n1 = word1.length();
+        int n2 = word2.length();
+        
+        int i=0, j=0;
+        while(i<n1 && j<n2) {
+            word3 += word1[i++];
+            word3 += word2[j++];
+        }
+        for(int k=i; k<n1; k++) {
+            word3 += word1[k];
+        }
+        for(int k=j; k<n2; k++) {
+            word3 += word2[k];
+        }
+        return word3;
+    }
+};
