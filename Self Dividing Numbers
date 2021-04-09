@@ -1,0 +1,40 @@
+class Solution {
+public:
+    vector<int> selfDividingNumbers(int left, int right) {
+        
+        vector<int> nums;
+        // if(left>0){
+        //     nums.push_back(left);    
+        // }
+        int i = left;
+        while(i<= right) {
+            if(i % 10 != 0) {
+                int k = i;
+                vector<int> val;
+                while(k>0) {
+                    int m = k%10;
+                    val.push_back(m);
+                    k /= 10;
+                }
+                int x=0;
+                for(int j=0; j<val.size(); j++){
+                    if(val[j] ==0){
+                        x=1;
+                        break;
+                    }else{
+                        if(i%val[j]!=0){
+                            x=1;
+                            break;
+                        }
+                    }
+                    
+                }
+                if(x==0){
+                    nums.push_back(i);
+                }
+            }
+            i++;
+        }
+        return nums;
+    }
+};
