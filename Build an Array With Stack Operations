@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<string> buildArray(vector<int>& target, int n) {
+        
+        vector<string> output;
+        int max=0;
+        for(int i=0; i<target.size(); i++) {
+            if(max < target[i]) {
+                max = target[i];
+            }
+        }
+        for(int i=1; i<max+1; i++) {
+            int x=0;
+            for(int j=0; j<target.size(); j++){
+                if(i == target[j]){
+                    x=1;
+                    output.push_back("Push");
+                    break;
+                }
+            }
+            if(x == 0) {
+                output.push_back("Push");
+                output.push_back("Pop");
+            }
+        }
+        return output;
+    }
+};
