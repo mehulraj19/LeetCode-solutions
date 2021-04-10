@@ -1,0 +1,44 @@
+class Solution {
+public:
+    bool canBeEqual(vector<int>& target, vector<int>& arr) {
+        
+        int max1=0;
+        for(int i=0; i<target.size(); i++) {
+            if(max1 < target[i]) {
+                max1 = target[i];
+            }
+        }
+        max1++;
+        int hash1[max1];
+        for(int i=0; i<max1; i++) {
+            hash1[i]=0;
+        }
+        for(int i=0; i<target.size(); i++) {
+            hash1[target[i]]++;
+        }
+        int max2=0;
+        for(int i=0; i<arr.size(); i++) {
+            if(max2 < arr[i]) {
+                max2 = arr[i];
+            }
+        }
+        max2++;
+        int hash2[max2];
+        for(int i=0; i<max2; i++) {
+            hash2[i]=0;
+        }
+        for(int i=0; i<arr.size(); i++) {
+            hash2[arr[i]]++;
+        }
+        if(max1 != max2) {
+            return false;
+        }else{
+            for(int i=0; i<max1; i++) {
+                if(hash1[i] != hash2[i]){
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+};
