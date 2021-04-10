@@ -1,0 +1,41 @@
+class Solution {
+public:
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        
+        vector<int> output;
+        
+        int m = matrix.size();
+        int n = matrix[0].size();
+        
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                int c = matrix[i][j];
+                int x=0;
+//                 Row wise
+                for(int k=0; k<n; k++) {
+                    if(j != k){
+                        if(c > matrix[i][k]) {
+                            x=1;
+                            break;
+                        }
+                    }
+                }
+                if(x == 0) {
+//                     Column wise
+                    for(int k=0; k<m; k++) {
+                        if(i != k) {
+                            if(c < matrix[k][j]){
+                                x=1;
+                                break;
+                            }
+                        }
+                    }
+                    if(x == 0){
+                        output.push_back(c);
+                    }
+                }
+            }
+        }
+        return output;
+    }
+};
