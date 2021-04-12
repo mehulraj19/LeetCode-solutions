@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> replaceElements(vector<int>& arr) {
+     
+        vector<int> output;
+        for(int i=0; i<arr.size(); i++) {
+            if(i != arr.size()-1){
+                int max=0;
+                for(int j=i+1; j<arr.size(); j++) {
+                    if(max < arr[j]) {
+                        max = arr[j];
+                    }
+                }
+                output.push_back(max);
+            }else{
+                output.push_back(-1);
+            }
+        }
+        return output;
+    }
+};
