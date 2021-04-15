@@ -1,0 +1,44 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits1) {
+        
+        int carry=0;
+        digits1[digits1.size()-1]++;
+        if(digits1[digits1.size()-1]>9) {
+            digits1[digits1.size()-1] = 0;
+            carry = 1;
+        }
+        if(carry != 0) {
+            if(digits1.size() == 1){
+                digits1.push_back(carry);
+                carry = 0;
+                reverse(digits1.begin(), digits1.end());
+            }
+            else{
+                for(int i=digits1.size()-2; i>=0; i--) {
+                    digits1[i] += carry;
+                    if(digits1[i]>9){
+                        carry = 1;
+                        digits1[i] = 0;
+                    }else{
+                        carry = 0;
+                        break;
+                    }
+                }
+                // cout << digits1[digits1.size()-2] << endl;
+                if(carry == 1){
+                    vector<int> nums;
+                    nums.push_back(carry);
+                    for(int i=0; i<digits1.size(); i++) {
+                        nums.push_back(digits1[i]);
+                    }
+                    digits1.clear();
+                    for(int i=0; i<nums.size(); i++) {
+                        digits1.push_back(nums[i]);
+                    }
+                }
+            }
+        }
+        return digits1;
+    }
+};
