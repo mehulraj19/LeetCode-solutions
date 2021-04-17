@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        string k1="";
+        for(int i=0; i<s.length(); i++) {
+            if((s[i] >= 'A' && s[i] <= 'Z' )|| s[i] >= 'a' && s[i] <= 'z' || (s[i] >= '0' && s[i] <= '9')) {
+                k1 += s[i];
+            }	
+        }
+        string k2="";
+        for(int i=s.length()-1; i>=0; i--) {
+            if((s[i] >= 'A' && s[i] <= 'Z' )|| s[i] >= 'a' && s[i] <= 'z' || (s[i] >= '0' && s[i] <= '9')) {
+                k2 += s[i];
+            }
+        }
+        transform(k1.begin(), k1.end(), k1.begin(), ::tolower);
+        transform(k2.begin(), k2.end(), k2.begin(), ::tolower);
+        int x=0;
+        for(int i=0, j=0; i<k1.length(), j<=k1.length(); i++, j++) {
+            if(k1[i] != k2[j]) {
+                x=1;
+                break;
+            }
+        }
+        
+        // cout << k1 << endl << k2;
+        if(x == 1) {
+            return false;
+        }
+        return true;
+    }
+};
