@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string reverseOnlyLetters(string S) {
+        
+        string k = "";
+        int n = S.length();
+        
+        for(int i=0; i<n; i++) {
+            if((S[i] >= 'A' && S[i] <= 'Z') || (S[i] >= 'a' && S[i] <= 'z')) {
+                k += S[i];
+            }
+        }
+        // return k;
+        int n1 = k.length();
+        string res = "";
+        int j = n1-1;
+        for(int i=0; i<n; i++) {
+            if((S[i] >= 'A' && S[i] <= 'Z') || (S[i] >= 'a' && S[i] <= 'z')) {
+                res += k[j--];
+            }else{
+                res += S[i];
+            }
+        }
+        return res;
+    }
+};
