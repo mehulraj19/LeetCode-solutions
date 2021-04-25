@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string convertToTitle(int columnNumber) {
+        string k="";
+        if(columnNumber <= 26){
+            char c = 'A' + columnNumber - 1;
+            k = c;
+        }else{
+            int m = columnNumber;
+            while(m >= 1) {
+                int num1 = m / 26;
+                int num2 = m % 26;
+                if(num2 != 0){
+                    num2--;
+                }else{
+                    num2 = 25;
+                }
+                k += 'A' + num2;
+                cout << m << endl;
+                m /= 26;
+                if(num2==25){
+                    --m;
+                }
+            }
+        }
+        reverse(k.begin(), k.end());
+        return k;
+    }
+};
