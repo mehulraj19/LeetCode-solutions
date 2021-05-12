@@ -1,0 +1,42 @@
+class NumMatrix {
+public:
+    vector<vector<int>> T1;
+    NumMatrix(vector<vector<int>>& matrix) {
+        int row = matrix.size();
+        int col = matrix[0].size();
+        
+        int T[row+1][col+1];
+        for(int i=0; i<row+1; i++) {
+            T[i][0] = 0;
+        }
+        for(int i=1; i<col+1; i++) {
+            T[0][i] = 0;
+        }
+        for(int i=1; i<row+1; i++) {
+            for(int j=1; j<col+1; j++) {
+                T[i][j] = T[i-1][j] + T[i][j-1] + matrix[i-1][j-1] - T[i-1][j-1];
+            }
+        }
+        for(int i=0; i<row+1; i++) {
+            vector<int> val;
+            for(int j=0; j<col+1; j++) {
+                val.push_back(T[i][j]);
+            }
+            T1.push_back(val);
+        }
+    }
+    
+    int sumRegion(int row1, int col1, int row2, int col2) {
+        row1++;
+        col1++;
+        row2++;
+        col2++;
+        return T1[row2][col2] - T1[row1-1][col2] - T1[row2][col1-1] + T1[row1-1][col1-1];
+    }
+};
+
+/**
+ * Your NumMatrix object will be instantiated and called as such:
+ * NumMatrix* obj = new NumMatrix(matrix);
+ * int param_1 = obj->sumRegion(row1,col1,row2,col2);
+ */
