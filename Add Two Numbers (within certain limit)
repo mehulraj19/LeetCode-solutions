@@ -1,0 +1,74 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* insertNode(ListNode*k, int val) {
+        ListNode* n = new ListNode(val);
+        if(k == NULL) {
+            k = n;
+        }else{
+            n->next = k;
+            k = n;
+        }
+        return k;
+    }
+    int listSize(ListNode* k) {
+        int count=0;
+        while(k != NULL) {
+            count++;
+            k = k->next;
+        }
+        return count;
+    }
+    ListNode* reverseList(ListNode* k) {
+        ListNode* current = k;
+        ListNode* n = NULL;
+        ListNode* prev = NULL;
+        while(current != NULL) {
+            n = current->next;
+            current->next = prev;
+            prev = current;
+            current = n;
+        }
+        return prev;
+    }
+    long long int valList(ListNode* k, int n) {
+        k = reverseList(k);
+        long long int sum = 0;
+        while(n--) {
+            sum += k->val*pow(10, n);
+            k = k->next;
+        }
+        return sum;
+    }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+        ListNode* l3 = NULL;
+        int n1= listSize(l1);
+        int n2 = listSize(l2);
+        // cout << n1 << " " << n2;
+        long long int val1 = valList(l1, n1);
+        long long int val2 = valList(l2, n2);
+        // cout << val1 << " " << val2;
+        long long int s = val1+val2;
+        if(s == 0){
+            l3 = insertNode(l3, 0);
+        }else{
+            while(s>0) {
+                int val = s % 10;
+                l3 = insertNode(l3, val);
+                s /= 10;
+            }
+            l3 = reverseList(l3);
+        }
+        return l3;
+    }
+};
