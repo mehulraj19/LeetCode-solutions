@@ -1,0 +1,34 @@
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        
+        int index = 0;
+        int n1 = s.length();
+        int n2 = t.length();
+        int x=0;
+        int j = 0;
+        while(j<n1) {
+            for(int i=0; i<n2; i++) {
+                if(t[i] != '#') {
+                    if(s[j] == t[i] && index <= i) {
+                        t[i] = '#';
+                        index = i;
+                        x=1;
+                        break;
+                    }
+                }
+            }
+            if(x == 1){
+                j++;
+                x=0;
+            }else{
+                x=2;
+                break;
+            }
+        }
+        if(x == 2){
+            return false;
+        }
+        return true;
+    }
+};
