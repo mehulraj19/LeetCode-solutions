@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int dominantIndex(vector<int>& nums) {
+        int n = *max_element(nums.begin(), nums.end());
+        if(nums.size() == 1) {
+            return 0;
+        }
+        for(int i=0; i<nums.size(); i++) {
+            if(nums[i] != n) {
+                if(nums[i]*2 > n) {
+                    return -1;
+                }
+            }
+        }
+        int index = 0;
+        for(int i=0; i<nums.size(); i++) {
+            if(n == nums[i]) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+};
