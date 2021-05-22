@@ -1,0 +1,74 @@
+class Solution {
+public:
+    char valuesNumber(int n) {
+        if(n == 0) {
+            return '0';
+        }
+        if(n == 1) {
+            return '1';
+        }
+        if(n == 2) {
+            return '2';
+        }
+        if(n == 3) {
+            return '3';
+        }
+        if(n == 4) {
+            return '4';
+        }
+        if(n == 5) {
+            return '5';
+        }
+        if(n == 6) {
+            return '6';
+        }
+        if(n == 7) {
+            return '7';
+        }
+        if(n == 8) {
+            return '8';
+        }
+        return '9';
+    }
+    string multiply(string num1, string num2) {
+        if (num1 == "0" || num2 == "0") {
+            return "0";
+        }
+        int n1 = num1.length();
+        int n2 = num2.length();
+        vector<int> number1;
+        vector<int> number2;
+        
+        
+        for(int i=0; i<n1; i++) {
+            int c = num1[i] - 48;
+            number1.push_back(c);
+        }
+        for(int i=0; i<n2; i++) {
+            int c = num2[i] - 48;
+            number2.push_back(c);
+        }
+        int k1 = 0;
+        for(int i=0; i<n1; i++) {
+            int c = number1[i] * pow(10, n1-i-1);
+            k1 += c;
+        }
+        int k2 = 0;
+        for(int i=0; i<n2; i++) {
+            int c = number2[i] * pow(10, n2-i-1);
+            k2 += c;
+        }
+        long long int val = k1 * k2;
+        string res = "";
+        vector<int> number3;
+        while(val>0) {
+            int m = val % 10;
+            number3.push_back(m);
+            val /= 10;
+        }
+        for(int i = number3.size()-1; i>=0; i--) {
+            res += valuesNumber(number3[i]);
+        }
+        return res;
+    }
+};
