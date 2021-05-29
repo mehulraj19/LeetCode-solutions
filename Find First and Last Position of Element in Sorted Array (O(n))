@@ -1,0 +1,32 @@
+ass Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> def;
+        def.push_back(-1);
+        def.push_back(-1);
+        if(nums.size() == 0) {
+            return def;
+        }
+        int first = -1;
+        int last = -1;
+        for(int i=0; i<nums.size(); i++) {
+            if(nums[i] == target) {
+                first = i;
+                break;
+            }
+        }
+        for(int i=nums.size()-1; i>=0; i--) {
+            if(nums[i] == target) {
+                last = i;
+                break;
+            }
+        }
+        vector<int> res;
+        if(first == last && last == -1) {
+            return def;
+        }
+        res.push_back(first);
+        res.push_back(last);
+        return res;
+    }
+};
